@@ -8,6 +8,7 @@ import {RxFontBold, RxFontItalic, RxStrikethrough, RxCode, RxChevronDown, RxChat
 import 'highlight.js/styles/github-dark.css'
 import BubbleButton from './BubbleButton'
 import { EditorState } from '@tiptap/pm/state'
+import FloatingButton from './FloatingButton'
 
 // export interface EditorProps {}
 
@@ -36,31 +37,17 @@ export default function Editor() {
         className='bg-zinc-700 shadow-xl gap-1 border-zinc-600 shadow-black/20 rounded-lg overflow-hidden flex flex-col py-2 px-1'
           editor={editor} 
           shouldShow={({state}) => handleShouldShow(state)}>
-          <button className='flex items-center gap-2 p-1 rounded min-w-[280px] hover:bg-zinc-600'>
-            <img 
-              src='https://www.notion.so/images/blocks/text/en-US.png' 
-              alt='Text'
-              className='w-12 border border-zinc-600 rounded bg-white'
+            <FloatingButton 
+              imageURL='https://www.notion.so/images/blocks/text/en-US.png' 
+              title='Text' 
+              subtitle='Just start writing with plain text.'
             />
-            <div className='flex flex-col text-left'>
-              <span className='text-sm'>Text</span>
-              <span className='text-xs text-zinc-400'>Just start writing with plain text.</span>
-            </div>
-          </button>
-          <button 
-            className='flex items-center gap-2 p-1 rounded min-w-[280px] hover:bg-zinc-600'
-            onClick={() => editor.chain().focus().toggleHeading({level: 1}).run()}
-          >
-            <img 
-              src='https://www.notion.so/images/blocks/header.57a7576a.png' 
-              alt='Text'
-              className='w-12 border border-zinc-600 rounded bg-white'
+            <FloatingButton 
+              imageURL='https://www.notion.so/images/blocks/header.57a7576a.png' 
+              title='Heading' 
+              subtitle='Big section heading.'
+              onClick={() => editor.chain().focus().toggleHeading({level: 1}).run()}
             />
-            <div className='flex flex-col text-left'>
-              <span className='text-sm'>Heading</span>
-              <span className='text-xs text-zinc-400'>Big section heading.</span>
-            </div>
-          </button>
         </FloatingMenu>
       )}
       { editor && (
